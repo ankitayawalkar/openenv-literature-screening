@@ -53,7 +53,7 @@ def run_inference():
     # Send to grader (JSON body)
     grade_res = requests.post(
     f"{BASE_URL}/grader",
-    json={"predictions": predictions}
+    json=predictions
 )
 
     # Safe print
