@@ -1,21 +1,22 @@
 name: literature_screening_env
+description: Clinical literature screening environment
+version: "1.0"
 
-description: Clinical literature screening environment with grading
+environment:
+  endpoints:
+    reset: /reset
+    state: /state
+    step: /step
 
-version: 1.0
-
-endpoints:
-  reset: /reset
-  state: /state
-  step: /step
-  grader: /grader
+grader:
+  endpoint: /grader
 
 tasks:
-  - name: easy
-    description: Binary classification of include/exclude
+  - id: easy
+    description: Binary classification
 
-  - name: medium
-    description: Classification with exclusion reason
+  - id: medium
+    description: Classification with reason
 
-  - name: hard
-    description: Strict grading with penalties
+  - id: hard
+    description: Strict grading
