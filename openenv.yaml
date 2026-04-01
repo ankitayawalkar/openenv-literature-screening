@@ -1,10 +1,8 @@
 name: literature-screening
-
-version: 1
+version: "1.0"
 
 tasks:
   - name: medium
-    description: Classification with reasoning
 
 endpoints:
   reset: /reset
