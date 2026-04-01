@@ -121,10 +121,14 @@ class PredictionRequest(BaseModel):
     predictions: List[Dict]
 
 # ---------- GRADER ENDPOINT ----------
+from models import Prediction
+from typing import List
+
 @app.post("/grader")
-def grader(request: PredictionRequest):
+def grader(predictions: List[Prediction]):
     try:
-        score = grade(request.predictions, ORIGINAL_DATA)
+        preds = [p.dict() for p in predictions]
+        score = grade(preds, ORIGINAL_DATA)
         return {"score": score}
     except Exception as e:
         return {"error": str(e)}
