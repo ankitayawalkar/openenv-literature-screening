@@ -1,9 +1,13 @@
 name: literature-screening
 
+version: 1
+
+tasks:
+  - name: medium
+    description: Classification with reasoning
+
 endpoints:
   reset: /reset
   state: /state
   step: /step
   grader: /grader
-
-task: medium
