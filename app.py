@@ -42,13 +42,21 @@ def reset_get():
     return {"message": "Use POST /reset"}
 
 # ---------- STATE ----------
-@app.get("/state")
+from models import State
+
+@app.get("/state", response_model=State)
 def state():
     global index, data
+
     if index >= len(data):
         return None
-    return data[index]
 
+    paper = data[index]
+
+    return State(
+        title=paper["title"],
+        abstract=paper["abstract"]
+    )
 # ---------- STEP ----------
 from models import Action
 
@@ -61,13 +69,6 @@ def step(action: Action):
 
     index += 1
 
-    return {"message": "Step recorded"}
-    global index, data
-
-    if index >= len(data):
-        return {"message": "Done"}
-
-    index += 1
     return {"message": "Step recorded"}
 
 # ---------- TASKS ----------
