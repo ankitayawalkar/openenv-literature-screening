@@ -50,8 +50,18 @@ def state():
     return data[index]
 
 # ---------- STEP ----------
+from models import Action
+
 @app.post("/step")
-def step(action: str):
+def step(action: Action):
+    global index, data
+
+    if index >= len(data):
+        return {"message": "Done"}
+
+    index += 1
+
+    return {"message": "Step recorded"}
     global index, data
 
     if index >= len(data):
