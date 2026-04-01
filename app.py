@@ -28,15 +28,18 @@ with open("data.json") as f:
 data = []
 index = 0
 
-
-# ---------- RESET ----------
-@app.get("/reset")
+# ---------- RESET (FIXED) ----------
+@app.post("/reset")
 def reset():
     global data, index
     data = ORIGINAL_DATA.copy()
     index = 0
-    return {"message": "Environment reset"}
+    return {"status": "reset successful"}
 
+# Optional: allow GET also (safe fallback)
+@app.get("/reset")
+def reset_get():
+    return {"message": "Use POST /reset"}
 
 # ---------- STATE ----------
 @app.get("/state")
@@ -45,7 +48,6 @@ def state():
     if index >= len(data):
         return None
     return data[index]
-
 
 # ---------- STEP ----------
 @app.post("/step")
@@ -58,7 +60,6 @@ def step(action: str):
     index += 1
     return {"message": "Step recorded"}
 
-
 # ---------- TASKS ----------
 @app.get("/tasks")
 def tasks():
@@ -70,12 +71,10 @@ def tasks():
         ]
     }
 
-
 # ---------- BASELINE ----------
 @app.get("/baseline")
 def baseline():
     return {"message": "Baseline not implemented"}
-
 
 # ---------- GRADER FUNCTION ----------
 def grade(predictions, data, task="medium"):
@@ -106,11 +105,9 @@ def grade(predictions, data, task="medium"):
     final_score = max(0, score / len(data))
     return final_score
 
-
 # ---------- REQUEST MODEL ----------
 class PredictionRequest(BaseModel):
     predictions: List[Dict]
-
 
 # ---------- GRADER ENDPOINT ----------
 @app.post("/grader")
