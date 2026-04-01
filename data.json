@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Transscleral fixation of closed loop haptic acrylic posterior chamber intraocular lens in aphakic nonvitrectomized eyes",
+    "abstract": "Evaluation of scleral fixation PCIOL in aphakic eyes.",
+    "label": "exclude",
+    "exclusion_code": "E1"
+  },
+  {
+    "id": 2,
+    "title": "Clinical Performance of New Enhanced Monofocal Intraocular Lenses",
+    "abstract": "Comparison of hydrophobic and hydrophilic enhanced monofocal IOLs.",
+    "label": "exclude",
+    "exclusion_code": "E7"
+  },
+  {
+    "id": 3,
+    "title": "Hydrophilic intraocular lens opacification after keratoplasty",
+    "abstract": "Analysis of opacified IOLs after keratoplasty.",
+    "label": "exclude",
+    "exclusion_code": "E2"
+  },
+  {
+    "id": 4,
+    "title": "Development of a standardized in vitro model for IOL calcification",
+    "abstract": "Laboratory model to reproduce IOL calcification.",
+    "label": "exclude",
+    "exclusion_code": "E2"
+  },
+  {
+    "id": 5,
+    "title": "Calcification of a Hydrophilic Acrylic Intraocular Lens after Glaucoma Surgery",
+    "abstract": "Case report of IOL calcification after glaucoma surgery.",
+    "label": "exclude",
+    "exclusion_code": "E5"
+  },
+  {
+    "id": 6,
+    "title": "Three-year incidence of Nd:YAG capsulotomy and PCO",
+    "abstract": "Real-world study comparing IOL materials.",
+    "label": "include",
+    "exclusion_code": ""
+  },
+  {
+    "id": 7,
+    "title": "Effect of number and position of IOL haptics",
+    "abstract": "Randomized trial on anterior capsule contraction.",
+    "label": "include",
+    "exclusion_code": ""
+  },
+  {
+    "id": 8,
+    "title": "Rotational Stability of Monofocal and Trifocal Toric IOLs",
+    "abstract": "Comparison of rotational stability and visual outcomes.",
+    "label": "include",
+    "exclusion_code": ""
+  },
+  {
+    "id": 9,
+    "title": "Clinical assessment of brain adaptation following multifocal IOL implantation",
+    "abstract": "Study on brain adaptation after IOL implantation.",
+    "label": "include",
+    "exclusion_code": ""
+  },
+  {
+    "id": 10,
+    "title": "Long-term Clinical Outcomes After Bilateral Implantation of Trifocal IOLs",
+    "abstract": "Long-term visual outcomes after trifocal IOL implantation.",
+    "label": "include",
+    "exclusion_code": ""
+  }
+]
