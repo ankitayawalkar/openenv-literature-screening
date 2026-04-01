@@ -1,11 +1,23 @@
-name: literature-screening
-version: "1.0"
+name: clinical-literature-screening-env
 
 tasks:
-  - name: medium
+  - name: easy
+    description: Binary classification (include/exclude)
 
-endpoints:
+  - name: medium
+    description: Classification with exclusion reason
+
+  - name: hard
+    description: High precision classification with penalties
+
+entrypoint:
   reset: /reset
   state: /state
   step: /step
-  grader: /grader
+
+grader:
+  endpoint: /grader
+
+metadata:
+  author: Ankita
+  domain: healthcare
