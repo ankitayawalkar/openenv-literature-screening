@@ -1,0 +1,9 @@
+name: literature-screening
+
+endpoints:
+  reset: /reset
+  state: /state
+  step: /step
+  grader: /grader
+
+task: medium
