@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
-from typing import List, Dict
 import json
+
+from models import State, Action, Observation, StepResponse, Prediction
+from typing import List
 
 app = FastAPI()
 
@@ -28,7 +29,7 @@ with open("data.json") as f:
 data = []
 index = 0
 
-# ---------- RESET (FIXED) ----------
+# ---------- RESET ----------
 @app.post("/reset")
 def reset():
     global data, index
@@ -36,14 +37,12 @@ def reset():
     index = 0
     return {"status": "reset successful"}
 
-# Optional: allow GET also (safe fallback)
+# Optional fallback
 @app.get("/reset")
 def reset_get():
     return {"message": "Use POST /reset"}
 
 # ---------- STATE ----------
-from models import State
-
 @app.get("/state", response_model=State)
 def state():
     global index, data
@@ -57,19 +56,39 @@ def state():
         title=paper["title"],
         abstract=paper["abstract"]
     )
-# ---------- STEP ----------
-from models import Action
 
-@app.post("/step")
+# ---------- STEP (FIXED FOR OPENENV) ----------
+@app.post("/step", response_model=StepResponse)
 def step(action: Action):
     global index, data
 
     if index >= len(data):
-        return {"message": "Done"}
+        return StepResponse(
+            observation=None,
+            reward=0.0,
+            done=True,
+            info={}
+        )
+
+    paper = data[index]
+
+    observation = Observation(
+        title=paper["title"],
+        abstract=paper["abstract"]
+    )
+
+    # reward logic
+    reward = 1.0 if action.action == paper["label"] else 0.0
 
     index += 1
+    done = index >= len(data)
 
-    return {"message": "Step recorded"}
+    return StepResponse(
+        observation=observation,
+        reward=reward,
+        done=done,
+        info={}
+    )
 
 # ---------- TASKS ----------
 @app.get("/tasks")
@@ -116,14 +135,7 @@ def grade(predictions, data, task="medium"):
     final_score = max(0, score / len(data))
     return final_score
 
-# ---------- REQUEST MODEL ----------
-class PredictionRequest(BaseModel):
-    predictions: List[Dict]
-
 # ---------- GRADER ENDPOINT ----------
-from models import Prediction
-from typing import List
-
 @app.post("/grader")
 def grader(predictions: List[Prediction]):
     try:
