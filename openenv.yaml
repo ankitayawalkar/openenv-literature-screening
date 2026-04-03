@@ -1,22 +1,8 @@
-name: literature_screening_env
-description: Clinical literature screening environment
+name: literature-screening-env
 version: "1.0"
 
-environment:
-  endpoints:
-    reset: /reset
-    state: /state
-    step: /step
+runtime:
+  python: "3.10"
 
-grader:
-  endpoint: /grader
-
-tasks:
-  - id: easy
-    description: Binary classification
-
-  - id: medium
-    description: Classification with reason
-
-  - id: hard
-    description: Strict grading
+entrypoint:
+  file: inference.py
