@@ -1,8 +1,11 @@
-name: literature-screening-env
+name: literature_screening_env
 version: "1.0"
 
-runtime:
-  python: "3.10"
+environment:
+  endpoints:
+    reset: /reset
+    state: /state
+    step: /step
 
-entrypoint:
-  file: inference.py
+grader:
+  endpoint: /grader
