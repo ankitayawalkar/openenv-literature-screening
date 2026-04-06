@@ -1,4 +1,4 @@
-name: literature-screening-env
+name: openenv-literature-screening
 version: "1.0"
 
 environment:
