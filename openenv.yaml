@@ -1,11 +1,13 @@
-name: literature_screening_env
+name: literature-screening-env
 version: "1.0"
 
 environment:
+  name: literature-screening-env
+
   endpoints:
     reset: /reset
     state: /state
     step: /step
 
-grader:
-  endpoint: /grader
+  grader:
+    endpoint: /grader
