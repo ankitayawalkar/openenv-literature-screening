@@ -93,8 +93,10 @@ def run_inference():
                 break
 
         # Call grader
-        grade_res = requests.post(f"{API_BASE_URL}/grader", json=predictions)
-        score = grade_res.json().get("score", 0)
+grade_res = requests.post(
+    f"{API_BASE_URL}/grader",
+    json={"predictions": predictions}
+)
 
         success = score > 0
 
